@@ -12,6 +12,11 @@ Infrastructure Used: Microservices-based architecture for this project.
 
 👉 1 Container for Frontend, 1 Container for Backend & 1 Container for API
 
+Techs Used: Nginx, Python, Flask
+Frontend-Nginx-based container(default.conf-Nginx configuration file & index.html in frontend directory)
+API-Nginx-based container(default.conf-Nginx configuration file & index.html in backend directory)
+Backend-Python base container with Flask web server framework(app.py main application code, requirements.txt for dependencies & Dockerfile for build image in backend directory)
+
 Application Flow:
 
  User (Browser) → Frontend Container → API Container → Backend Container
@@ -26,17 +31,17 @@ But what if you want isolation between containers (so they don’t talk to each 
 
 Example:
 
-Container-A & Container-B are both attached to the default docker0 → They can communicate.
+Container-A & Container-B are both attached to the default docker0; they can communicate.
 
-If Container-A is on network-a and Container-B is on network-b, then they cannot communicate (different networks/subnets).
+If Container-A is on network A and Container-B is on network B, then they cannot communicate (different networks/subnets).
 
 Final Concept Applied:
 
-Frontend & Backend containers placed in different networks.
+Front-end and back-end containers are placed in different networks.
 
 Backend is isolated (secure, not directly exposed to the public or the frontend).
 
-To enable communication, the API container is attached to both networks (network-a & network-b).
+To enable communication, the API container is attached to both networks (network A & network B).
 
 So, Frontend communicates with Backend only via the API container.
 
@@ -45,5 +50,10 @@ So, Frontend communicates with Backend only via the API container.
 I have used the Docker Compose concept for this microservice-based application .
 
 
+Commands to run this application:-
 
-Please refer this GitHub repository for this project.
+docker-compose up -d --build
+
+
+
+
